@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+import sys
+import subprocess as sp
+
+def vim_escape(a):
+    val_iter = iter(a.split(' ' if a else []))
+    for val in val_iter:
+        arg = val
+        while (len(val) - len(val.rstrip('\\'))) % 2 != 0:
+            arg = arg[:-1]
+            val = next(val_iter, '')
+            arg += f" {val}"
+        if len(arg):
+            yield arg
+
+def main():
+    process = []
+    args_iter = iter(sys.argv)
+    next(args_iter)
+    debug = False
+    for arg in args_iter:
+        if arg.startswith("--vim-esc-dbg"):
+            debug = True
+        elif arg.startswith("--vim-esc"):
+            process.extend(list(vim_escape(next(args_iter, None))))
+        else:
+            process.append(arg)
+    if debug:
+        print(process)
+        return 0
+    return sp.run(process, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr).returncode
+
+if __name__ == "__main__":
+    sys.exit(main())
