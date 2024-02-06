@@ -1,5 +1,8 @@
 *
 
+!.bashrc
+!.profile
+!.bash_aliases
 !.gitignore
 
 !.config
