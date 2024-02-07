@@ -59,7 +59,7 @@ require("lazy").setup({
       local config_dir = vim.fn.stdpath("config")
       rg_opts = rg_opts .. " --vimgrep --column --line-number --no-heading"
       rg_opts = rg_opts .. " --color=always --smart-case --max-columns=4096"
-      rg_opts = rg_opts .. " --vim-esc"
+      rg_opts = rg_opts .. " --vim-esc --no-ignore-parent"
       local rg_cmd = string.format('%s/vrg rg%s', config_dir, rg_opts)
       require("fzf-lua").setup({
         grep = {
