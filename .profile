@@ -9,7 +9,7 @@
 #umask 022
 
 export TERMINAL="st"
-export EDITOR="vim"
+export EDITOR="nvim"
 export CC="/usr/bin/clang"
 export CXX="/usr/bin/clang++"
 
@@ -27,5 +27,5 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 if [[ -f "$HOME/.local/profile_hook" ]]; then
-    $HOME/.local/profile_hook
+    . $HOME/.local/profile_hook
 fi
