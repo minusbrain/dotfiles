@@ -8,3 +8,6 @@ dotfiles:
 - destination: ~/.bashrc
   name: Bash RC
   source: dotbashrc
+- destination: ~/.tmux.conf
+  name: tmux
+  source: dottmux.conf
