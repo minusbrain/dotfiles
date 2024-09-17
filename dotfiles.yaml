@@ -11,3 +11,8 @@ dotfiles:
 - destination: ~/.tmux.conf
   name: tmux
   source: dottmux.conf
+- destination: ~/.config/nvim
+  ignore:
+  - lazy-lock.json
+  name: neovim
+  source: nvim
