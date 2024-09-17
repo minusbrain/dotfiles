@@ -29,6 +29,3 @@ fi
 if [[ -f "$HOME/.local/profile_hook" ]]; then
     . $HOME/.local/profile_hook
 fi
-
-# Created by `pipx` on 2024-05-18 08:40:42
-export PATH="$PATH:/home/aevers/.local/bin"
