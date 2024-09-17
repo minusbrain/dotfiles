@@ -58,7 +58,7 @@ def initial_copy_file(src, dst):
         source = normalize_path(src)
         destination = normalize_path(dst)
         print(f"Copying {source} to {destination}")
-        shutil.copyfile(source, destination)
+        shutil.copytree(source, destination, symlinks=False)
     except Exception as e:
         print(f"Could not copy {source} to {destination}: {e}")
         sys.exit(1)
@@ -73,7 +73,8 @@ def add(args, cfg):
     cfg["dotfiles"].append({
         "name": args.name,
         "source": args.source,
-        "destination": args.destination
+        "destination": args.destination,
+        "ignore": args.ignore
     })
 
     initial_copy_file(args.destination, args.source)
@@ -89,9 +90,10 @@ def main():
     install_parser.set_defaults(func=install)
     add_parser = subparsers.add_parser("add", aliases=["a"], help="Add a new dotfile")
     add_parser.set_defaults(func=add)
-    add_parser.add_argument("name", help="Name of the dotfile")
-    add_parser.add_argument("source", help="Filename in repository, e.g. dotbashrc")
-    add_parser.add_argument("destination", help="The existing file to replace, e.g. ~/.bashrc")
+    add_parser.add_argument("name", help="Human-friendly name of the dotfile or config directory")
+    add_parser.add_argument("source", help="File- or directory name in repository, e.g. dotbashrc or nvim")
+    add_parser.add_argument("destination", help="The existing file to replace, e.g. ~/.bashrc or ~/.config/nvim")
+    add_parser.add_argument("--ignore", "-i", nargs="+", help="Ignore pattern for files to ignore")
     args = main_parser.parse_args()
     cfg = load_config()
     

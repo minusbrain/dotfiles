@@ -26,9 +26,17 @@ This can be done by calling
 This will copy the file into the repository and replace the original
 location with a symlink. It also creates an entry into the YAML config file.
 
+If also works with directories like `~/.config/nvim`
+```sh
+./dotfiles add "NeoVIM config" nvim ~/config/nvim
+```
+
 # Potential future functionality
 
 * Restore backup
 * Remove dotfile
 * localized dotfiles depending on local machine
 * Support for whole directories
+    * Mostly supported implictly already
+    * But support to properly ignore some files is missing
+    * Ignored files should also show up correctly in .gitignore
