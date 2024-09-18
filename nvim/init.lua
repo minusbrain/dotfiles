@@ -19,6 +19,11 @@ vim.opt.title = true
 vim.opt.list = true
 vim.opt.background = "dark"
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
 -----------------
 -- lazy.nvim
 -----------------
@@ -115,6 +120,7 @@ require("lazy").setup({
       "quangnguyen30192/cmp-nvim-ultisnips",
     }
   },
+  { "github/copilot.vim" },
   {
     "kassio/neoterm",
     init = function()
@@ -191,10 +197,14 @@ require("neo-tree").setup({
     }
   },
   filesystem = {
-    visible = true,
+    visible = false,
     hide_dotfiles = false,
     hide_gitignored = false,
     use_libuv_file_watcher = true,
+    follow_current_file = {
+      enabled = true,
+      leave_dirs_open = true
+    },
     filtered_items = {
       always_show = {
         ".gitignore",
@@ -203,6 +213,7 @@ require("neo-tree").setup({
 	".config"
       },
       hide_by_name = {
+        "__init__.py",
         "__pycache__",
       },
     }

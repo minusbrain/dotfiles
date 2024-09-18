@@ -7,7 +7,16 @@ alias la='ls -lsa'
 alias ld='du -h -d 1 | sort -hr'
 alias ls='ls --color=auto'
 
-alias icd=". interactive_cd"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
+alias .........="cd ../../../../../../../.."
+alias ..........="cd ../../../../../../../../.."
+alias ...........="cd ../../../../../../../../../.."
+alias ............="cd ../../../../../../../../../../.."
 
 command -v pacman >/dev/null
 if [ $? -eq 0 ]; then
@@ -51,6 +60,9 @@ alias gidl='git-dl-review'
 alias gim='git-select-revision git merge'
 alias girb='git-select-revision git rebase'
 alias gis='git-select-revision echo'
+alias gfm='git-find-merged'
+alias gfdm='git-find-merged usr/${USER} | xargs -L1 git branch -D'
+alias gfu='git-find-unmerged'
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -61,6 +73,9 @@ alias h='$(cat ~/.bash_history | dmenu -i -l 20 || echo "")'
 alias rlc='repo forall -p -c git show -s --format="%H - %cI - %cn: %s"'
 alias rsd='repo sync -d -j8'
 alias rst='repo status'
+alias rfm='repo forall -p -c "git find-merged"'
+alias rfdm='repo forall -p -c "git find-merged usr/${USER} | xargs -L1 git branch -D"'
+alias rfu='repo forall -p -c "git find-unmerged"'
 alias rsy='repo sync -j8'
 
 alias sclrst='sudo systemctl restart'
