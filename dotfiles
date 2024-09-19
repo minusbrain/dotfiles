@@ -16,7 +16,7 @@ def load_config():
     except Exception as e:
         print(f"Could not load yaml configuration: {e}")
         sys.exit(1)
-    
+
     return yaml_contents
 
 def write_config(cfg):
@@ -44,21 +44,24 @@ def install_single_dotfile(dotfile_cfg) -> bool:
         if os.path.islink(destination):
             print(f"{destination} already is a symlink, skipping")
             return True
-        
+
         # Symlink the source to the destination
         os.symlink(source, destination)
-        print(f"Symlinked {source} to {destination}")   
+        print(f"Symlinked {source} to {destination}")
         return True
     except Exception as e:
         print(f"Could not install {dotfile_cfg['name']}: {e}")
         return False
-    
+
 def initial_copy_file(src, dst):
     try:
         source = normalize_path(src)
         destination = normalize_path(dst)
         print(f"Copying {source} to {destination}")
-        shutil.copytree(source, destination, symlinks=False)
+        if os.path.isdir(source):
+            shutil.copytree(source, destination, symlinks=False)
+        else:
+            shutil.copy(source, destination)
     except Exception as e:
         print(f"Could not copy {source} to {destination}: {e}")
         sys.exit(1)
@@ -96,7 +99,7 @@ def main():
     add_parser.add_argument("--ignore", "-i", nargs="+", help="Ignore pattern for files to ignore")
     args = main_parser.parse_args()
     cfg = load_config()
-    
+
     if args.func:
         newcfg = args.func(args, cfg)
 
