@@ -1,0 +1,18 @@
+#!/bin/bash
+# Use dmenu to select a git revision and call a command
+# on the selected revision. This is useful in combination
+# with aliases like these, to easily checkout, merge, diff
+# against or rebase ontop of a revision
+# Example aliases:
+#
+# alias gico='git select-revision git checkout'
+# alias gid='git select-revision git diff'
+# alias gim='git select-revision git merge'
+# alias girb='git select-revision git rebase'
+# alias gis='git select-revision echo'
+REVISIONS="$(git branch -a | sed -e 's/^[ \*]*//')\n$(git tag -l)\n$(git rev-list --all)"
+SELECTED_REVISION=$(echo "${REVISIONS}" | dmenu -i -l 20 -p "Selcect revision")
+
+if [[ $? -eq 0 ]]; then
+    $@ ${SELECTED_REVISION}
+fi

@@ -16,3 +16,31 @@ dotfiles:
   - lazy-lock.json
   name: neovim
   source: nvim
+- destination: ~/bin/bin_helper
+  ignore: null
+  name: Binary Helper script
+  source: scripts/bin_helper
+- destination: ~/bin/utils.sh
+  ignore: null
+  name: Script Utilites
+  source: scripts/utils.sh
+- destination: ~/bin/git-dl-review
+  ignore: null
+  name: Git Script Download Review
+  source: scripts/git-dl-review
+- destination: ~/bin/git-find-merged
+  ignore: null
+  name: Git Script Find Merged
+  source: scripts/git-find-merged
+- destination: ~/bin/git-find-unmerged
+  ignore: null
+  name: Git Script Find Unmerged
+  source: scripts/git-find-unmerged
+- destination: ~/bin/git-interactive-checkout
+  ignore: null
+  name: Git Script Interactive Checkout
+  source: scripts/git-interactive-checkout
+- destination: ~/bin/git-select-revision
+  ignore: null
+  name: Git Script Interactive Select Revision
+  source: scripts/git-select-revision

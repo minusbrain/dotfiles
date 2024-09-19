@@ -1,0 +1,41 @@
+#!/bin/bash
+# Synopsis: Download Open Review from gerrit
+# Usage git dl-review [<branch>]
+#
+# Dependencies:
+# * dmenu (https://wiki.archlinux.org/title/dmenu)
+# * sed, xargs, grep
+# * git & git-review
+#
+# Description:
+# Downloads list of applicable open reviews from gerrit instance,
+# lets you select one using dmenu and downloads it,
+# The base branch for which reviews are being selected is determined
+# in three different ways, listed by priority
+# 1. Passed as parameter
+# 2. Currently checked out HEAD
+# 3. defaultbranch in .gitreview file
+# If none of these is set or can be determined, the script will stop
+SCRIPT_DIR=$(dirname "$(realpath $0)")
+
+source ${SCRIPT_DIR}/utils.sh
+
+BRANCH=$1
+if [ -z "${BRANCH}" ]; then
+    BRANCH=$(git_branch)
+fi
+
+if [ -z "${BRANCH}" ]; then
+    GIT_REVIEW_FILE=$(find_upwards . .gitreview)
+    if [ ! -z "${GIT_REVIEW_FILE}" ]; then
+        BRANCH=$(cat ${GIT_REVIEW_FILE} | grep "defaultbranch" | sed -E 's/defaultbranch=//')
+    fi
+fi
+
+if [ -z "${BRANCH}" ]; then
+    echo "Could not identify base-branch. Pass it as parameter, check it out or set it in .gitreview"
+    exit -1
+fi
+
+git review -l | grep "${BRANCH}" | dmenu -i -l 20 | sed -E 's/^([1-9][0-9]*).*/\1/' | xargs git review -d
+

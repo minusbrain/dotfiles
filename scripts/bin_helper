@@ -1,0 +1,27 @@
+#!/usr/bin/env python3
+import sys
+
+if len(sys.argv) > 1:
+    try:
+        hex_val = int(sys.argv[1], 16)
+        print(f"If HEX: 0b{bin(hex_val)[2:]:0>32} - {hex_val:11} - 0x{hex(hex_val)[2:]:0>8}")
+    except:
+        pass
+
+    try:
+        dec_val = int(sys.argv[1], 10)
+        print(f"If DEC: 0b{bin(dec_val)[2:]:0>32} - {dec_val:11} - 0x{hex(dec_val)[2:]:0>8}")
+    except:
+        pass
+
+    try:
+        bin_val = int(sys.argv[1], 2)
+        print(f"If BIN: 0b{bin(bin_val)[2:]:0>32} - {bin_val:11} - 0x{hex(bin_val)[2:]:0>8}")
+    except:
+        pass
+else:
+    for i in range(16):
+        print(f"{i:3} - 0x{hex(i)[2:]:0>2} - 0b{bin(i)[2:]:0>4}")
+
+    for i in range(16, 255, 16):
+        print(f"{i:3} - 0x{hex(i)[2:]:0>2} - 0b{bin(i)[2:]:0>8}")

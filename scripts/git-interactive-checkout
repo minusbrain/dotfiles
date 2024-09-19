@@ -1,0 +1,12 @@
+#!/bin/bash
+# Use dmenu to select a git revision and check it out
+REVISIONS="$(git branch -a | sed -e 's/^[ \*]*//')\n$(git tag -l)\n$(git rev-list --all)"
+if [ -z $1 ]; then
+    SELECTED_REVISION=$(echo "${REVISIONS}" | dmenu -i -l 20 -p "Selcect revision")
+else
+    SELECTED_REVISION=$(echo "${REVISIONS}" | grep $1 | dmenu -i -l 20 -p "Selcect revision")
+fi
+
+if [[ $? -eq 0 ]]; then
+    git checkout ${SELECTED_REVISION}
+fi
