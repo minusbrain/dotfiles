@@ -44,3 +44,11 @@ dotfiles:
   ignore: null
   name: Git Script Interactive Select Revision
   source: scripts/git-select-revision
+- destination: ~/.zprofile
+  ignore: null
+  name: Z-Shell Profile
+  source: dotzprofile
+- destination: ~/.zshrc
+  ignore: null
+  name: Z-Shell rc file
+  source: dotzshrc
