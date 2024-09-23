@@ -83,5 +83,7 @@ alias sclstart='sudo systemctl start'
 alias sclstatus='sudo systemctl status'
 alias sclstop='sudo systemctl stop'
 
+alias bh='bin_helper'
+
 alias ss='gnome-screenshot -i'
 alias yaml2js='python -c '\''import sys, yaml, json; json.dump(yaml.load(sys.stdin, Loader=yaml.SafeLoader), sys.stdout, indent=4)'\'''
