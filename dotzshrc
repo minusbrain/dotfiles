@@ -74,6 +74,10 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+FZF_VERSION=$(fzf --version)
+if [[ ! -z $FZF_VERSION ]]; then
+    source <(fzf --zsh)
+fi
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
