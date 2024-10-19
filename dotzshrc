@@ -114,16 +114,9 @@ alias la='ls -lsa'
 alias ld='du -h -d 1 | sort -hr'
 alias ls='ls --color=auto'
 
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias .......="cd ../../../../../.."
-alias ........="cd ../../../../../../.."
-alias .........="cd ../../../../../../../.."
-alias ..........="cd ../../../../../../../../.."
-alias ...........="cd ../../../../../../../../../.."
-alias ............="cd ../../../../../../../../../../.."
+# zoxide aliases
+alias cd='z'
+alias cdi='zi'
 
 command -v pacman >/dev/null
 if [ $? -eq 0 ]; then
@@ -193,3 +186,6 @@ alias bh='bin_helper'
 
 alias ss='gnome-screenshot -i'
 alias yaml2js='python -c '\''import sys, yaml, json; json.dump(yaml.load(sys.stdin, Loader=yaml.SafeLoader), sys.stdout, indent=4)'\'''
+
+eval "$(zoxide init zsh)"
+
