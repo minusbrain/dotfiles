@@ -3,13 +3,13 @@
 # Usage git dl-review [<branch>]
 #
 # Dependencies:
-# * dmenu (https://wiki.archlinux.org/title/dmenu)
+# * fzf
 # * sed, xargs, grep
 # * git & git-review
 #
 # Description:
 # Downloads list of applicable open reviews from gerrit instance,
-# lets you select one using dmenu and downloads it,
+# lets you select one using fzf and downloads it,
 # The base branch for which reviews are being selected is determined
 # in three different ways, listed by priority
 # 1. Passed as parameter
@@ -37,5 +37,5 @@ if [ -z "${BRANCH}" ]; then
     exit -1
 fi
 
-git review -l | grep "${BRANCH}" | dmenu -i -l 20 | sed -E 's/^([1-9][0-9]*).*/\1/' | xargs git review -d
+git review -l | grep "${BRANCH}" | fzf --height=20 | sed -E 's/^([1-9][0-9]*).*/\1/' | xargs git review -d
 

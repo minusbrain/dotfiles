@@ -167,7 +167,9 @@ alias gfu='git-find-unmerged'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias grp='groups | sed -e "s/ /\n/g" | dmenu -l 20'
+alias grp='groups | sed -e "s/ /\n/g" | fzf --height 20'
+
+alias rg="rg --hidden --glob '!.git'"
 
 alias rlc='repo forall -p -c git show -s --format="%H - %cI - %cn: %s"'
 alias rsd='repo sync -d -j8'
