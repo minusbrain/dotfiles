@@ -112,9 +112,9 @@ require("lazy").setup({
   {
     "sirver/ultisnips",
     init = function()
-      vim.g.UltiSnipsJumpForwardTrigger = '<c-n>'
-      vim.g.UltiSnipsJumpBackwardTrigger = '<c-p>'
-    end,
+      vim.g.UltiSnipsJumpForwardTrigger = '<Tab>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+    end
   },
   {
     "hrsh7th/nvim-cmp",
