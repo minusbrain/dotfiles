@@ -120,7 +120,7 @@ require("lazy").setup({
       "quangnguyen30192/cmp-nvim-ultisnips",
     }
   },
-  { "github/copilot.vim" },
+  { "zbirenbaum/copilot.lua" },
   {
     "kassio/neoterm",
     init = function()
@@ -415,6 +415,29 @@ require('nvim-treesitter.configs').setup {
     end,
   }
 }
+
+require('copilot').setup({
+  panel = {
+    enabled = false,
+  },
+  suggestion = {
+    enabled =false,
+  },
+  filetypes = {
+    cpp = true,
+    python = true,
+    yaml = false,
+    markdown = false,
+    help = false,
+    gitcommit = false,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    ["."] = false
+  },
+  copilot_node_command = vim.fn.expand("$HOME") .. '/.nvm/versions/node/v18.20.1/bin/node',
+  server_opts_overrides = {},
+})
 
 vim.api.nvim_set_hl(0, "@include", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@repeat", { link = "cConditional" })
