@@ -110,6 +110,13 @@ require("lazy").setup({
     end,
   },
   {
+    "sirver/ultisnips",
+    init = function()
+      vim.g.UltiSnipsJumpForwardTrigger = '<c-n>'
+      vim.g.UltiSnipsJumpBackwardTrigger = '<c-p>'
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-path",
@@ -121,6 +128,12 @@ require("lazy").setup({
     }
   },
   { "zbirenbaum/copilot.lua" },
+  {
+  "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
   {
     "kassio/neoterm",
     init = function()
@@ -246,9 +259,36 @@ cmp.setup({
   window = {
   },
   formatting = {
-    fields = { 'kind', 'abbr', 'menu', },
     format = require("lspkind").cmp_format({
-      with_text = false,
+      mode = "symbol_text",
+      symbol_map = {
+        Text = "󰉿",
+        Method = "󰆧",
+        Function = "󰊕",
+        Constructor = "匧",
+        Field = "󰜢",
+        Variable = "󰀫",
+        Class = "󰠱",
+        Interface = "",
+        Module = "䠋",
+        Property = "󰜢",
+        Unit = "󰑭",
+        Value = "󰎠",
+        Enum = "",
+        Keyword = "󰌋",
+        Snippet = "䟕",
+        Color = "󰏘",
+        File = "󰈙",
+        Reference = "󰈇",
+        Folder = "󰉋",
+        EnumMember = "",
+        Constant = "󰏿",
+        Struct = "󰙅",
+        Event = "",
+        Operator = "󰆕",
+        TypeParameter = "",
+        Copilot = "",
+      }
     })
   },
   completion = {
@@ -298,6 +338,7 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'copilot' },
     { name = 'ultisnips' },
     { name = 'path' },
   })
@@ -503,3 +544,5 @@ vim.api.nvim_set_hl(0, "@character.c", { link = "String" })
 vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@text.literal.md", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
