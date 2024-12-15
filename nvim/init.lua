@@ -295,6 +295,7 @@ cmp.setup({
     autocomplete = false,
   },
   mapping = cmp.mapping.preset.insert({
+    ['<C-a>'] = cmp.mapping.complete(),
     ['<tab>'] = cmp.mapping.confirm({ select = true }),
     ['<C-e>'] = cmp.mapping.abort(),
   }),
@@ -326,14 +327,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- Set configuration for lsp languages.
-cmp.setup.filetype({'lua', 'rust', 'python', 'cpp'}, {
-  autocomplete = {
-    types.cmp.TriggerEvent.TextChanged,
-  },
+cmp.setup.filetype({'lua', 'rust', 'python', 'cpp', 'c'}, {
   completion = {
-    autocomplete = {
-      types.cmp.TriggerEvent.TextChanged,
-    },
+    autocomplete = false
   },
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
