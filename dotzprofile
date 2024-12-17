@@ -1,7 +1,7 @@
 export TERMINAL="st"
 export EDITOR="nvim"
-export CC="/usr/bin/clang"
-export CXX="/usr/bin/clang++"
+export CC="/usr/bin/gcc"
+export CXX="/usr/bin/g++"
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
