@@ -1,13 +1,4 @@
 dotfiles:
-- destination: ~/.bash_aliases
-  name: Bash Aliases
-  source: dotbash_aliases
-- destination: ~/.profile
-  name: Profile
-  source: dotprofile
-- destination: ~/.bashrc
-  name: Bash RC
-  source: dotbashrc
 - destination: ~/.tmux.conf
   name: tmux
   source: dottmux.conf
