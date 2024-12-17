@@ -343,6 +343,18 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp', 'c'}, {
   })
 })
 
+-- Non LSP snippet configuration
+cmp.setup.filetype({'rst', 'markdown', 'gitcommit'}, {
+  completion = {
+    autocomplete = false
+  },
+  sources = cmp.config.sources({
+    { name = 'copilot' },
+    { name = 'ultisnips' },
+    { name = 'path' },
+  })
+})
+
 -- LSP configuration
 local function lspSymbol(name, icon)
   vim.fn.sign_define('DiagnosticSign' .. name,
@@ -466,10 +478,12 @@ require('copilot').setup({
   filetypes = {
     cpp = true,
     python = true,
+    rst = true,
+    c = true,
+    markdown = true,
+    gitcommit = true,
     yaml = false,
-    markdown = false,
     help = false,
-    gitcommit = false,
     gitrebase = false,
     hgcommit = false,
     svn = false,
