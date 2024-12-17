@@ -117,6 +117,9 @@ require("lazy").setup({
     end
   },
   {
+    "honza/vim-snippets"
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-path",
