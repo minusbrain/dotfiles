@@ -52,3 +52,11 @@ dotfiles:
   ignore: null
   name: Z-Shell rc file
   source: dotzshrc
+- destination: ~/.xinitrc
+  ignore: null
+  name: X11 init file
+  source: dotxinitrc
+- destination: ~/.Xresources
+  ignore: null
+  name: X11 Resources file
+  source: dotXresources
