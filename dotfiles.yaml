@@ -55,3 +55,11 @@ dotfiles:
   ignore: null
   name: Backup Profile File
   source: dotprofile
+- destination: ~/bin/pdfs.py
+  ignore: null
+  name: PDFs Opener script
+  source: scripts/pdfs.py
+- destination: ~/bin/pdfs
+  ignore: null
+  name: PDFs Opener wrapper script
+  source: scripts/pdfs
