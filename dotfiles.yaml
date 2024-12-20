@@ -51,3 +51,7 @@ dotfiles:
   ignore: null
   name: X11 Resources file
   source: dotXresources
+- destination: ~/.profile
+  ignore: null
+  name: Backup Profile File
+  source: dotprofile
