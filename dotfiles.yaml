@@ -63,3 +63,7 @@ dotfiles:
   ignore: null
   name: PDFs Opener wrapper script
   source: scripts/pdfs
+- destination: ~/.config/i3/config
+  ignore: null
+  name: I3 configuration
+  source: doti3config
