@@ -63,7 +63,7 @@ bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
-bindsym $mod+shift+l exec i3lock -i ~/.local/lock.png
+bindsym $mod+shift+l exec /bin/sh -c "i3lock -i $(cat ~/.local/lock_bg) -t"
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
