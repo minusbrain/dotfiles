@@ -21,7 +21,7 @@ def get_all_available_pdfs(paths: List[str]) -> List[str]:
     return pdfs
 
 def pick_pdf(pdfs: List[str]) -> str:
-    fzf = sp.Popen(["fzf"], stdout=sp.PIPE, stdin=sp.PIPE, text=True)
+    fzf = sp.Popen(["fzf", "-i"], stdout=sp.PIPE, stdin=sp.PIPE, text=True)
     pdf = fzf.communicate("\n".join(pdfs))[0]
     if fzf.returncode == 0:
         return pdf
