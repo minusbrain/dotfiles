@@ -40,7 +40,7 @@ setxkbmap -option caps:escape &
 xset dpms 300 0 1800
 xset +dpms
 
-picom -bcC --config ~/.config/picom.conf
+picom -b --config ~/.config/picom/picom.conf
 
 # Background picture to use
 if [ -f ~/.local/desktop_bg ]; then

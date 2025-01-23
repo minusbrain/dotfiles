@@ -67,3 +67,7 @@ dotfiles:
   ignore: null
   name: I3 configuration
   source: doti3config
+- destination: ~/.config/picom/picom.conf
+  ignore: null
+  name: Picom Config File
+  source: dotpicom
