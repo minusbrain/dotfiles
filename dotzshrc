@@ -136,12 +136,10 @@ alias uzp='tar -zxvf'
 alias pdf='zathura'
 alias vim='nvim'
 
-alias ga='git add'
 alias gap='git add . --patch'
 alias gc='git commit'
 alias gco='git checkout'
 alias gd='git diff'
-alias ggui='git gui'
 alias gf='git fetch --all -p'
 alias gl='git log'
 alias gm='git merge'
@@ -161,6 +159,10 @@ alias gis='git-select-revision echo'
 alias gfm='git-find-merged'
 alias gfdm='git-find-merged usr/${USER} | xargs -L1 git branch -D'
 alias gfu='git-find-unmerged'
+
+function gnf {
+    git checkout -b usr/${USER}/$1
+}
 
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
