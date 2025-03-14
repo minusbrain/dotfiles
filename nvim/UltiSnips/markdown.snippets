@@ -1,9 +1,57 @@
 priority -50
 
-snippet rtc "RTC WorkItem" bA
-[RTC1-${1:ID}](https://rb-alm-20-p.de.bosch.com/ccm/web/projects/STLA_Brain_WP2#action=com.ibm.team.workitem.viewWorkItem&id=$1)
+global !p
+from gerrit import GerritClient
+from rtcclient import RTCClient
+import netrc, os
+
+# Create/Edit "~/.netrc" file in your home dir with the following content
+# machine https://rbcm-gerrit.de.bosch.com
+# login <userid>
+# password <hashed password>
+
+# machine https://rb-alm-20-p.de.bosch.com/ccm
+# login <userid>
+# password <password>
+RTC_URL = "https://rb-alm-20-p.de.bosch.com/ccm"
+GERRIT_URL = "https://rbcm-gerrit.de.bosch.com"
+
+def get_workitem_by_id(identifier: str) -> str:
+    if len(identifier) < 6:
+        return "<ID too short>"
+    rtc_login, _, rtc_password = netrc.netrc().authenticators(RTC_URL)
+    rtc_client = RTCClient(RTC_URL, rtc_login, rtc_password, allow_redirects=True)
+    try:
+        wk = rtc_client.getWorkitem(identifier)
+    except:
+        return "<ID not found>"
+
+    subject = wk.title
+    for s in ["[CTS]", "[STLA]", "[", "]", "(", ")", ":"]:
+        subject = subject.replace(s,"")
+    subject = subject.strip()
+    return subject
+
+def get_gerrit_subject_by_id(identifier: str) -> str:
+    if len(identifier) < 6:
+        return "<ID too short>"
+    gerrit_client = GerritClient(GERRIT_URL, username=os.environ.get("USER"), use_netrc=True)
+    try:
+        change = gerrit_client.changes.get(identifier)
+    except Exception as ex:
+        return str(ex)
+
+    subject = change.get_detail().get("subject", "")
+    for s in ["[T!]", "[B!]", "[F!]", "[T]", "[B]", "[F]", "(NOTICKET)", "[", "]", "(", ")", ":"]:
+        subject = subject.replace(s,"")
+    subject = subject.strip()
+    return subject
+endglobal
+
+snippet rtc "RTC WorkItem" A
+[Ticket ${1:ID} - `!p snip.rv = get_workitem_by_id(t[1])`](`!p snip.rv = RTC_URL`/web#action=com.ibm.team.workitem.viewWorkItem&id=$1)
 endsnippet
 
-snippet gerrit "Gerrit Review" bA
-[Gerrit Review ${1:ID}](https://rbcm-gerrit.de.bosch.com/q/$1)
+snippet gerrit "Gerrit Review" A
+[Review ${1:ID} - `!p snip.rv = get_gerrit_subject_by_id(t[1])`](`!p snip.rv = GERRIT_URL`/q/$1)
 endsnippet
