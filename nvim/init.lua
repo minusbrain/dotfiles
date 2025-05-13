@@ -97,16 +97,9 @@ require("lazy").setup({
     "vim-airline/vim-airline",
     dependencies = {
       "vim-airline/vim-airline-themes",
-      "edkolev/tmuxline.vim",
     },
     init = function()
-      vim.g.airline_theme='google_dark'
-    end,
-  },
-  {
-    "morhetz/gruvbox",
-    init = function()
-      vim.cmd.colorscheme("gruvbox")
+      vim.g.airline_theme='base16_nord'
     end,
   },
   {
