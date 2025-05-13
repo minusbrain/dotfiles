@@ -482,7 +482,7 @@ require('copilot').setup({
     svn = false,
     ["."] = false
   },
-  copilot_node_command = vim.fn.expand("$HOME") .. '/.nvm/versions/node/v18.20.1/bin/node',
+  copilot_node_command = vim.fn.expand("$HOME") .. '/.nvm/versions/node/v20.18.0/bin/node',
   server_opts_overrides = {},
 })
 
