@@ -123,13 +123,6 @@ require("lazy").setup({
       "quangnguyen30192/cmp-nvim-ultisnips",
     }
   },
-  { "zbirenbaum/copilot.lua" },
-  {
-  "zbirenbaum/copilot-cmp",
-    config = function ()
-      require("copilot_cmp").setup()
-    end
-  },
   {
     "kassio/neoterm",
     init = function()
@@ -283,7 +276,6 @@ cmp.setup({
         Event = "",
         Operator = "󰆕",
         TypeParameter = "",
-        Copilot = "",
       }
     })
   },
@@ -330,7 +322,6 @@ cmp.setup.filetype({'lua', 'rust', 'python', 'cpp', 'c'}, {
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
-    { name = 'copilot' },
     { name = 'ultisnips' },
     { name = 'path' },
   })
@@ -342,7 +333,6 @@ cmp.setup.filetype({'rst', 'markdown', 'gitcommit'}, {
     autocomplete = false
   },
   sources = cmp.config.sources({
-    { name = 'copilot' },
     { name = 'ultisnips' },
     { name = 'path' },
   })
@@ -461,31 +451,6 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
-require('copilot').setup({
-  panel = {
-    enabled = false,
-  },
-  suggestion = {
-    enabled =false,
-  },
-  filetypes = {
-    cpp = true,
-    python = true,
-    rst = true,
-    c = true,
-    markdown = true,
-    gitcommit = true,
-    yaml = false,
-    help = false,
-    gitrebase = false,
-    hgcommit = false,
-    svn = false,
-    ["."] = false
-  },
-  copilot_node_command = vim.fn.expand("$HOME") .. '/.nvm/versions/node/v20.18.0/bin/node',
-  server_opts_overrides = {},
-})
-
 vim.api.nvim_set_hl(0, "@include", { link = "PreProc" })
 vim.api.nvim_set_hl(0, "@repeat", { link = "cConditional" })
 vim.api.nvim_set_hl(0, "@conditional", { link = "cConditional" })
@@ -551,4 +516,3 @@ vim.api.nvim_set_hl(0, "@punctuation.special.md", { link = "rustAttribute" })
 vim.api.nvim_set_hl(0, "@text.literal.md", { link = "markdownCodeBlock" })
 vim.api.nvim_set_hl(0, "@text.title.md", { link = "Comment" })
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
