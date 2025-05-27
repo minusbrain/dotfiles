@@ -59,10 +59,10 @@ dotfiles:
   ignore: null
   name: PDFs Opener script
   source: scripts/pdfs.py
-- destination: ~/bin/pdfs
+- destination: ~/bin/floaty_shell_wrapper
   ignore: null
-  name: PDFs Opener wrapper script
-  source: scripts/pdfs
+  name: Generic floaty shell wrapper
+  source: scripts/floaty_shell_wrapper
 - destination: ~/.config/i3/config
   ignore: null
   name: I3 configuration

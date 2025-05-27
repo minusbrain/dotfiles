@@ -184,6 +184,7 @@ alias sclstart='sudo systemctl start'
 alias sclstatus='sudo systemctl status'
 alias sclstop='sudo systemctl stop'
 
+alias pdfs='floaty_shell_wrapper pdfs.py'
 alias bh='bin_helper'
 
 alias ss='gnome-screenshot -i'

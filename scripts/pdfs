@@ -1,2 +1,0 @@
-#!/bin/sh
-${TERMINAL} -c st-float -n PdfFuzzy -g 120x8+0+0 pdfs.py
